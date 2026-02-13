@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var dimensions: Vector2i = Vector2i(7, 5)
+@export var dimensions: Vector2i = Vector2i(15, 10)
 @export var start: Vector2i = Vector2i(-1, 0)
 @export var critical_path_length: int = 8
 @export var branches: int = 3
@@ -12,7 +12,7 @@ var level: Array
 func _ready() -> void:
 	init_level()
 	place_entrance()
-	generate_critical_path(start, critical_path_length, " C")
+	generate_critical_path(start, critical_path_length, "C")
 	generate_branches()
 	print_level()
 
@@ -63,7 +63,7 @@ func generate_critical_path(from: Vector2i, length: int, marker: String):
 			level[current.x][current.y] = marker
 			if length > 1:
 				branch_candidates.append(current)
-			if generate_critical_path(current, length - 1, " C"):
+			if generate_critical_path(current, length - 1, "C"):
 				return true
 			else:
 				branch_candidates.erase(current)
