@@ -19,6 +19,9 @@ func process(delta: float):
 	
 	if Input.is_action_just_pressed("jump") and uter.jump_count == 1:
 		transitioned.emit(self, "Jump")
+	
+	if Input.is_action_just_pressed("dash") and !uter.is_dash_used:
+		transitioned.emit(self, "Dash")
 
 func physics_process(delta: float):
 	var direction = Input.get_axis("ui_left", "ui_right")

@@ -11,6 +11,9 @@ func process(delta: float):
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "Jump")
 	
+	if Input.is_action_just_pressed("dash"):
+		transitioned.emit(self, "Dash")
+	
 	if direction != 0:
 		uter.velocity.x = direction * uter.speed
 		uter.anim.scale.x = direction
