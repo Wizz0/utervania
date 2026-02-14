@@ -6,6 +6,10 @@ func enter():
 	uter.anim.play("fall")
 
 func process(delta: float):
+	if Input.is_action_just_pressed("jump") and uter.jump_count < 2:
+		transitioned.emit(self, "Jump")
+
+func physics_process(delta: float) -> void:
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction != 0:
@@ -19,4 +23,5 @@ func process(delta: float):
 	uter.move_and_slide()
 	
 	if uter.is_on_floor():
+		uter.jump_count = 0
 		transitioned.emit(self, "Idle")

@@ -18,6 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.process(delta)
+		current_state.physics_process(delta)
 
 func on_child_transition(old_state, new_state_name):
 	if old_state != current_state:
