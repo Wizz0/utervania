@@ -10,8 +10,11 @@ func enter():
 func exit():
 	pass
 
-func process(delta: float):
+func physics_process(delta: float) -> void:
 	pass
 
+func process(delta: float):
+	pass
+	
 func gravity():
 	uter.velocity.y += uter.gravity

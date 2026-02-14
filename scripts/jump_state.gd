@@ -5,6 +5,7 @@ var is_jump_key_held : bool = false
 
 func enter():
 	super.enter()
+	uter.jump_count += 1
 	uter.velocity.y = -uter.jump_force
 	uter.anim.play("jump")
 	is_jump_key_held = true
@@ -15,7 +16,11 @@ func exit():
 func process(delta: float):
 	if Input.is_action_just_released("jump"):
 		is_jump_key_held = false
+	
+	if Input.is_action_just_pressed("jump") and uter.jump_count == 1:
+		transitioned.emit(self, "Jump")
 
+func physics_process(delta: float):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction != 0:
