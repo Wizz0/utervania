@@ -9,3 +9,8 @@ var jump_count: int = 0
 var is_dash_used: bool = false
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func die():
+	print("You're dead")
+	queue_free()
