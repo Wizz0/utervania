@@ -55,4 +55,7 @@ position = Vector2(6, 2)
 [node name="Checkpoint" parent="." instance=ExtResource("6_dukvv")]
 position = Vector2(121, -88)
 
+[node name="Checkpoint2" parent="." instance=ExtResource("6_dukvv")]
+position = Vector2(402, -88)
+
 [editable path="HazardArea"]
