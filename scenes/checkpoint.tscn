@@ -9,6 +9,7 @@
 font_size = 10
 
 [node name="Checkpoint" type="Sprite2D"]
+z_index = -1
 texture = ExtResource("1_yyywg")
 script = ExtResource("2_ywqth")
 
@@ -19,7 +20,7 @@ shape = SubResource("CircleShape2D_ywqth")
 debug_color = Color(0.17070812, 0.62904775, 0.40196592, 0.41960785)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.5
+range_z_max = -1
 texture = ExtResource("1_yyywg")
 
 [node name="Label" type="Label" parent="."]
