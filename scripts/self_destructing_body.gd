@@ -31,6 +31,8 @@ func _on_timer_timeout() -> void:
 			if !disappear:
 				disappear = true
 				parent.enabled = false
+				$Crack.visible = false
+				$Crack2.visible = false
 				parent.set_process(false) # отключаем физику
 			
 				await get_tree().create_timer(respawn_time).timeout # ждем respawn_time
@@ -38,6 +40,8 @@ func _on_timer_timeout() -> void:
 				# восстанавливаем платформу
 				parent.position = initial_position
 				parent.enabled = true
+				$Crack.visible = true
+				$Crack2.visible = true
 				parent.set_process(false)
 				set_process(false)
 		else:

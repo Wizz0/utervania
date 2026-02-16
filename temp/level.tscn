@@ -42,4 +42,4 @@ tile_map_data = PackedByteArray(0, 0, 9, 0, 251, 255, 0, 0, 6, 0, 4, 0, 0, 0, 10
 tile_set = ExtResource("1_6suhx")
 
 [node name="SelfDestructingBody" parent="TileMapLayer" instance=ExtResource("4_6suhx")]
-position = Vector2(160, -81)
+position = Vector2(160, -80)

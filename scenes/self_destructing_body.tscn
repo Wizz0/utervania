@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://su3hw4tdad7y"]
+[gd_scene load_steps=4 format=3 uid="uid://su3hw4tdad7y"]
 
 [ext_resource type="Script" uid="uid://cdxtydd6pkuiw" path="res://scripts/self_destructing_body.gd" id="1_qfq2b"]
+[ext_resource type="Texture2D" uid="uid://bmio1s04jfwxi" path="res://assets/tileset/crack.png" id="2_ujtke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsf0c"]
 size = Vector2(32, 0.4375)
@@ -9,12 +10,21 @@ size = Vector2(32, 0.4375)
 script = ExtResource("1_qfq2b")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_rsf0c")
 debug_color = Color(0.61419094, 0.37219718, 0.97524506, 0.41960785)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Crack" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+texture = ExtResource("2_ujtke")
+
+[node name="Crack2" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("2_ujtke")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
