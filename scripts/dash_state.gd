@@ -9,7 +9,7 @@ var direction
 func enter():
 	super.enter()
 	
-	direction = Input.get_axis("left", "right")
+	direction = Input.get_axis("ui_left", "ui_right")
 	if direction == 0:
 		if uter.anim.scale.x == -1.0:
 			direction = -1
