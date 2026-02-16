@@ -8,9 +8,14 @@ var gravity = 10
 var jump_count: int = 0
 var is_dash_used: bool = false
 
+var checkpoint: Vector2
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func die():
 	print("You're dead")
 	queue_free()
+
+func save(new_checkpoint):
+	checkpoint = new_checkpoint

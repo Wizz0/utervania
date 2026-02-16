@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj0dxtd2b7s8g"
-path="res://.godot/imported/spike.png-2e67bacceb2904bb0df4115a38b127fa.ctex"
+uid="uid://b0823f2k5uqdn"
+path="res://.godot/imported/checkpoint.png-5eccf8761a666155410d62eaadd38573.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileset/spike.png"
-dest_files=["res://.godot/imported/spike.png-2e67bacceb2904bb0df4115a38b127fa.ctex"]
+source_file="res://assets/interactables/checkpoint.png"
+dest_files=["res://.godot/imported/checkpoint.png-5eccf8761a666155410d62eaadd38573.ctex"]
 
 [params]
 
