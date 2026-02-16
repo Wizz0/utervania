@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6sa1rjk4xrcr"]
+
+[ext_resource type="Texture2D" uid="uid://b0823f2k5uqdn" path="res://assets/interactables/checkpoint.png" id="1_yyywg"]
+[ext_resource type="Script" uid="uid://blv40bd2gk42t" path="res://scripts/checkpoint.gd" id="2_ywqth"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywqth"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vsimk"]
+font_size = 10
+
+[node name="Checkpoint" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_yyywg")
+script = ExtResource("2_ywqth")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_ywqth")
+debug_color = Color(0.17070812, 0.62904775, 0.40196592, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_z_max = -1
+texture = ExtResource("1_yyywg")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = -40.0
+offset_right = 38.0
+offset_bottom = -17.0
+grow_horizontal = 2
+text = "loren ipsum"
+label_settings = SubResource("LabelSettings_vsimk")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
