@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg03jytjvofa2"]
+
+[ext_resource type="Texture2D" uid="uid://c6uee0yytl0ss" path="res://assets/interactables/watermelon.png" id="1_2m8un"]
+[ext_resource type="Texture2D" uid="uid://bbqy0yh57yu5b" path="res://assets/interactables/round-green-light.png" id="2_0na3x"]
+[ext_resource type="Script" uid="uid://0vuptitx3653" path="res://scripts/watermelon_pickup.gd" id="2_7km1r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7km1r"]
+atlas = ExtResource("1_2m8un")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soxkt"]
+atlas = ExtResource("1_2m8un")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgrxt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7km1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soxkt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0na3x"]
+
+[node name="WatermelonPickup" type="AnimatedSprite2D"]
+position = Vector2(-4.7683716e-07, -4.7683716e-07)
+scale = Vector2(0.6875, 0.6875)
+sprite_frames = SubResource("SpriteFrames_tgrxt")
+autoplay = "default"
+frame_progress = 0.67382216
+script = ExtResource("2_7km1r")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0na3x")
+debug_color = Color(0.16326007, 0.6404062, 0.21622941, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(0.40909097, 0.40909097)
+energy = 0.5
+texture = ExtResource("2_0na3x")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
