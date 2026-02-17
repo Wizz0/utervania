@@ -14,9 +14,27 @@ var checkpoint: Vector2
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+var abilities: Dictionary = {}
+var watermelons: int = 0
+
 func die():
 	camera.screen_shake(5, 0.2)
 	position = checkpoint
 
 func save(new_checkpoint):
 	checkpoint = new_checkpoint
+
+func has_ability(ability: String):
+	return abilities.get(ability, false)
+	print(abilities)
+
+func add_ability(ability: String):
+	if has_ability(ability):
+		return
+	
+	abilities.set(ability, true)
+	print(abilities)
+
+func add_watermelon(num: int = 1):
+	watermelons += num
+	print(watermelons)

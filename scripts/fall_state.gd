@@ -6,10 +6,13 @@ func enter():
 	uter.anim.play("fall")
 
 func process(delta: float):
-	if Input.is_action_just_pressed("jump") and uter.jump_count < 2:
-		transitioned.emit(self, "Jump")
+	if Input.is_action_just_pressed("jump"):
+		if uter.jump_count == 0:
+			transitioned.emit(self, "Jump")
+		if uter.jump_count == 1 and uter.has_ability("double_jump"):
+			transitioned.emit(self, "Jump")
 	
-	if Input.is_action_just_pressed("dash") and !uter.is_dash_used:
+	if Input.is_action_just_pressed("dash") and !uter.is_dash_used and uter.has_ability("dash"):
 		transitioned.emit(self, "Dash")
 
 func physics_process(delta: float) -> void:
@@ -17,7 +20,6 @@ func physics_process(delta: float) -> void:
 	
 	if direction != 0:
 		uter.velocity.x = direction * uter.speed
-		#player.anim.flip_h = direction < 0
 		uter.anim.scale.x = direction
 	else:
 		uter.velocity.x = 0

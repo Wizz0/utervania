@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b352fwnifi0gr"]
+[gd_scene load_steps=11 format=3 uid="uid://b352fwnifi0gr"]
 
 [ext_resource type="TileSet" uid="uid://dx0gymyt84wcp" path="res://resources/tilemap.tres" id="1_6suhx"]
 [ext_resource type="PackedScene" uid="uid://dwtqehgwtnbtw" path="res://scenes/uter.tscn" id="2_h4a28"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://su3hw4tdad7y" path="res://scenes/self_destructing_body.tscn" id="4_6suhx"]
 [ext_resource type="PackedScene" uid="uid://b30wpdw3h7klw" path="res://scenes/hazard_area.tscn" id="5_ij13m"]
 [ext_resource type="PackedScene" uid="uid://b6sa1rjk4xrcr" path="res://scenes/checkpoint.tscn" id="6_dukvv"]
+[ext_resource type="PackedScene" uid="uid://qf3i5m735tto" path="res://scenes/ability_pickup.tscn" id="7_b8gcb"]
+[ext_resource type="PackedScene" uid="uid://cg03jytjvofa2" path="res://scenes/watermelon_pickup.tscn" id="8_yupvj"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivns5"]
 _data = {
@@ -57,5 +59,12 @@ position = Vector2(121, -88)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("6_dukvv")]
 position = Vector2(402, -88)
+
+[node name="AbilityPickup" parent="." instance=ExtResource("7_b8gcb")]
+position = Vector2(174, -8)
+ability_to_give = "dash"
+
+[node name="WatermelonPickup" parent="." instance=ExtResource("8_yupvj")]
+position = Vector2(308, -8)
 
 [editable path="HazardArea"]
