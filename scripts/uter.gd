@@ -23,5 +23,13 @@ func die():
 func save(new_checkpoint):
 	checkpoint = new_checkpoint
 
-#func has_ability(ability: String):
+func has_ability(ability: String):
+	return abilities.get(ability, false)
+	print(abilities)
+
+func add_ability(ability: String):
+	if has_ability(ability):
+		return
 	
+	abilities.set(ability, true)
+	print(abilities)

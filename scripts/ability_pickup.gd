@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+@export var ability_to_give: String
+
 var time: float = 0.0
 
 func _process(delta: float) -> void:
@@ -10,4 +12,5 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Uter:
+		body.add_ability(ability_to_give)
 		queue_free()

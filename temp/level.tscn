@@ -61,5 +61,6 @@ position = Vector2(402, -88)
 
 [node name="AbilityPickup" parent="." instance=ExtResource("7_b8gcb")]
 position = Vector2(174, -8)
+ability_to_give = "dash"
 
 [editable path="HazardArea"]
