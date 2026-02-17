@@ -14,9 +14,14 @@ var checkpoint: Vector2
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+var abilities: Dictionary = {}
+
 func die():
 	camera.screen_shake(5, 0.2)
 	position = checkpoint
 
 func save(new_checkpoint):
 	checkpoint = new_checkpoint
+
+#func has_ability(ability: String):
+	
