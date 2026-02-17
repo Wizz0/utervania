@@ -23,8 +23,11 @@ func enter():
 func process(delta: float):
 	dash_timer -= delta
 	if dash_timer <= 0:
-		if Input.is_action_just_pressed("jump") and uter.jump_count < 2:
-			transitioned.emit(self, "Jump")
+		if Input.is_action_just_pressed("jump"):
+			if uter.jump_count == 0:
+				transitioned.emit(self, "Jump")
+			if uter.jump_count == 1:
+				transitioned.emit(self, "Jump")
 		
 		transitioned.emit(self, "Fall")
 

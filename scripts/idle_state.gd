@@ -15,7 +15,7 @@ func process(delta: float):
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "Jump")
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and uter.has_ability("dash"):
 		transitioned.emit(self, "Dash")
 		
 	gravity()

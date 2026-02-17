@@ -17,10 +17,10 @@ func process(delta: float):
 	if Input.is_action_just_released("jump"):
 		is_jump_key_held = false
 	
-	if Input.is_action_just_pressed("jump") and uter.jump_count == 1:
+	if Input.is_action_just_pressed("jump") and uter.jump_count == 1 and uter.has_ability("double_jump"):
 		transitioned.emit(self, "Jump")
 	
-	if Input.is_action_just_pressed("dash") and !uter.is_dash_used:
+	if Input.is_action_just_pressed("dash") and !uter.is_dash_used and uter.has_ability("dash"):
 		transitioned.emit(self, "Dash")
 
 func physics_process(delta: float):
