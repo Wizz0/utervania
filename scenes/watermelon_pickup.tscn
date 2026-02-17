@@ -43,8 +43,8 @@ shape = SubResource("CircleShape2D_0na3x")
 debug_color = Color(0.16326007, 0.6404062, 0.21622941, 0.41960785)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(9.536743e-07, 9.536743e-07)
-scale = Vector2(0.40909097, 0.40909097)
+position = Vector2(1.4545462, 1.4545462)
+scale = Vector2(0.28551137, 0.28551137)
 energy = 0.5
 texture = ExtResource("2_0na3x")
 

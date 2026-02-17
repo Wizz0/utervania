@@ -56,7 +56,7 @@ shape = SubResource("CircleShape2D_ke44d")
 debug_color = Color(0.16694212, 0.6236858, 0.46588218, 0.41960785)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.44628906, 0.44628906)
+scale = Vector2(0.29907227, 0.29907227)
 energy = 0.5
 texture = ExtResource("3_n31x4")
 
