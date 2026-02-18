@@ -9,6 +9,7 @@ class_name Uter
 var gravity = 10
 var jump_count: int = 0
 var is_dash_used: bool = false
+var can_move: bool = false
 
 var checkpoint: Vector2
 
@@ -21,19 +22,56 @@ var abilities: Dictionary = {}
 var watermelons: int = 0
 
 var elapsed_time: float = 0.0
+var is_timer_running: bool = false
+
+var traffic_lights_colors: Dictionary = {}
 
 func _ready() -> void:
+	checkpoint = position
+	
 	if unlock_all_abilities:
 		abilities = {
 			"double_jump": true,
 			"dash": true
 		}
 	
+	traffic_lights_colors = {
+		"RED" : $HUD/Control/Red,
+		"YELLOW" : $HUD/Control/Yellow,
+		"GREEN" : $HUD/Control/Green
+	}
+	
+	start_race()
+
+func start_race():
+	switch_traffic_light_color("RED")
+	await get_tree().create_timer(2.0).timeout
+	
+	switch_traffic_light_color("YELLOW")
+	await get_tree().create_timer(2.0).timeout
+	
+	switch_traffic_light_color("GREEN")
+	
 	start_timer()
+	
+	await get_tree().create_timer(2.0).timeout
+	turn_off_all_traffic_lights()
+
+func switch_traffic_light_color(color: String):
+	turn_off_all_traffic_lights()
+	
+	var light = traffic_lights_colors.get(color)
+	if light:
+		light.visible = true
+
+func turn_off_all_traffic_lights():
+	for light in traffic_lights_colors.values():
+		light.visible = false
 
 func _process(delta: float) -> void:
-	elapsed_time += delta
-	update_timer_display()
+	if is_timer_running:
+		elapsed_time += delta
+		update_timer_display()
 
 func die():
 	camera.screen_shake(5, 0.2)
@@ -58,6 +96,8 @@ func add_watermelon(num: int = 1):
 	print(watermelons)
 
 func start_timer():
+	can_move = true
+	is_timer_running = true
 	elapsed_time = 0.0
 	update_timer_display()
 

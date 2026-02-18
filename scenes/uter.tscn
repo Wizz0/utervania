@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dwtqehgwtnbtw"]
+[gd_scene load_steps=40 format=3 uid="uid://dwtqehgwtnbtw"]
 
 [ext_resource type="Texture2D" uid="uid://cwi1yc258ibfw" path="res://assets/uter/uter-idle.png" id="1_el6a7"]
 [ext_resource type="Script" uid="uid://s7dcjme2apns" path="res://scripts/uter.gd" id="1_vi2m4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bb4x87o6kh0gs" path="res://scripts/fall_state.gd" id="7_hk8xl"]
 [ext_resource type="Script" uid="uid://c1wtdk4gt1plc" path="res://scripts/jump_state.gd" id="10_8b8mq"]
 [ext_resource type="Script" uid="uid://kowf2d0635hp" path="res://scripts/dash_state.gd" id="12_qyu2a"]
+[ext_resource type="Texture2D" uid="uid://bol6p4ww221np" path="res://assets/interactables/just-a-circle.png" id="14_lisen"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tt2n3"]
 atlas = ExtResource("2_bkvfk")
@@ -260,3 +261,60 @@ grow_vertical = 0
 text = "0.0"
 label_settings = SubResource("LabelSettings_f1fcv")
 horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 63.0
+offset_right = 88.0
+offset_bottom = 129.0
+grow_horizontal = 2
+
+[node name="Red" type="TextureRect" parent="HUD/Control"]
+modulate = Color(0.99999994, 0.1649175, 0.19496861, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.5
+offset_right = 77.0
+offset_bottom = 38.5
+grow_vertical = 2
+texture = ExtResource("14_lisen")
+expand_mode = 3
+
+[node name="Yellow" type="TextureRect" parent="HUD/Control"]
+modulate = Color(0.8118879, 0.68653315, 0.20291156, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -38.5
+offset_right = 38.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_lisen")
+expand_mode = 3
+
+[node name="Green" type="TextureRect" parent="HUD/Control"]
+modulate = Color(0.080979146, 0.82683104, 0.46198308, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -38.5
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("14_lisen")
+expand_mode = 3

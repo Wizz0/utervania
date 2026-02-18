@@ -9,10 +9,10 @@ func enter():
 	uter.anim.play("idle")
 
 func process(delta: float):
-	if Input.get_axis("ui_left", "ui_right") != 0:
+	if Input.get_axis("ui_left", "ui_right") != 0 and uter.can_move:
 		transitioned.emit(self, "Run")
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and uter.can_move:
 		transitioned.emit(self, "Jump")
 	
 	if Input.is_action_just_pressed("dash") and uter.has_ability("dash"):
