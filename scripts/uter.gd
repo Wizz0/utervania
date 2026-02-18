@@ -14,8 +14,17 @@ var checkpoint: Vector2
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+@export var unlock_all_abilities: bool = false
+
 var abilities: Dictionary = {}
 var watermelons: int = 0
+
+func _ready() -> void:
+	if unlock_all_abilities:
+		abilities = {
+			"double_jump": true,
+			"dash": true
+		}
 
 func die():
 	camera.screen_shake(5, 0.2)

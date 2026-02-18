@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var respawnable : bool = true
-@export var respawn_time : float = 3.0
+@export var respawn_time : float = 1.0
 
 var disappear : bool = false
 var time = 1
