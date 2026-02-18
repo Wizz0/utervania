@@ -420,6 +420,9 @@ texture = ExtResource("1_lwgwv")
 16:6/0/z_index = -1
 16:4/0 = 0
 16:4/0/z_index = -1
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
