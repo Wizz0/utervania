@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dwtqehgwtnbtw"]
+[gd_scene load_steps=39 format=3 uid="uid://dwtqehgwtnbtw"]
 
 [ext_resource type="Texture2D" uid="uid://cwi1yc258ibfw" path="res://assets/uter/uter-idle.png" id="1_el6a7"]
 [ext_resource type="Script" uid="uid://s7dcjme2apns" path="res://scripts/uter.gd" id="1_vi2m4"]
@@ -200,6 +200,9 @@ animations = [{
 radius = 6.0
 height = 24.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_f1fcv"]
+font_size = 30
+
 [node name="Uter" type="CharacterBody2D" groups=["uter"]]
 script = ExtResource("1_vi2m4")
 
@@ -239,3 +242,21 @@ metadata/_custom_type_script = "uid://c1wtdk4gt1plc"
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("12_qyu2a")
 metadata/_custom_type_script = "uid://kowf2d0635hp"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.5
+offset_top = -113.0
+offset_right = 35.5
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0"
+label_settings = SubResource("LabelSettings_f1fcv")
+horizontal_alignment = 1

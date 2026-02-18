@@ -76,7 +76,7 @@ layer_1/tile_data = PackedInt32Array(-4194325, 1114112, 5, -4128789, 1114112, 5,
 position = Vector2(-1, -15)
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_81a5f")]
-position = Vector2(36, -8)
+position = Vector2(85, -8)
 
 [node name="MovingPlatform" parent="." instance=ExtResource("4_gg43x")]
 position = Vector2(334, -61)
