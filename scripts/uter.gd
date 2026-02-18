@@ -42,6 +42,7 @@ func _ready() -> void:
 	}
 	
 	start_race()
+	update_watermelon_display()
 
 func start_race():
 	switch_traffic_light_color("RED")
@@ -93,7 +94,7 @@ func add_ability(ability: String):
 
 func add_watermelon(num: int = 1):
 	watermelons += num
-	print(watermelons)
+	update_watermelon_display()
 
 func start_timer():
 	can_move = true
@@ -109,3 +110,6 @@ func update_timer_display():
 
 func stop_race():
 	is_timer_running = false
+
+func update_watermelon_display():
+	$HUD/WatermelonCounter/Label.text = "x" + str(watermelons)

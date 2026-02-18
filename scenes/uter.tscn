@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dwtqehgwtnbtw"]
+[gd_scene load_steps=42 format=3 uid="uid://dwtqehgwtnbtw"]
 
 [ext_resource type="Texture2D" uid="uid://cwi1yc258ibfw" path="res://assets/uter/uter-idle.png" id="1_el6a7"]
 [ext_resource type="Script" uid="uid://s7dcjme2apns" path="res://scripts/uter.gd" id="1_vi2m4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://c1wtdk4gt1plc" path="res://scripts/jump_state.gd" id="10_8b8mq"]
 [ext_resource type="Script" uid="uid://kowf2d0635hp" path="res://scripts/dash_state.gd" id="12_qyu2a"]
 [ext_resource type="Texture2D" uid="uid://bol6p4ww221np" path="res://assets/interactables/just-a-circle.png" id="14_lisen"]
+[ext_resource type="Texture2D" uid="uid://c6uee0yytl0ss" path="res://assets/interactables/watermelon.png" id="15_if7ij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tt2n3"]
 atlas = ExtResource("2_bkvfk")
@@ -204,6 +205,9 @@ height = 24.0
 [sub_resource type="LabelSettings" id="LabelSettings_f1fcv"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_if7ij"]
+font_size = 25
+
 [node name="Uter" type="CharacterBody2D" groups=["uter"]]
 script = ExtResource("1_vi2m4")
 
@@ -318,3 +322,28 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("14_lisen")
 expand_mode = 3
+
+[node name="WatermelonCounter" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -221.0
+offset_right = 165.0
+offset_bottom = -135.0
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/WatermelonCounter"]
+position = Vector2(49, 42)
+scale = Vector2(3.1875, 3.1875)
+texture = ExtResource("15_if7ij")
+hframes = 2
+
+[node name="Label" type="Label" parent="HUD/WatermelonCounter"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 29.0
+offset_right = 132.0
+offset_bottom = 64.0
+text = "x1"
+label_settings = SubResource("LabelSettings_if7ij")
