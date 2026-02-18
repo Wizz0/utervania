@@ -1,6 +1,16 @@
 extends CharacterBody2D
 class_name Uter
 
+const MAX_SCORE = 10000.0
+const DECAY_RATE = 0.01
+const MAX_WATERMELONS = 3
+const WATERMELON_BONUS = 0.5
+const DEATH_PENALTY = 0.1
+
+var current_score = 0
+var final_score = 0
+var death_count = 0
+
 @onready var camera: Camera2D = $Camera2D
 
 @export var speed: float = 200.0
@@ -43,6 +53,7 @@ func _ready() -> void:
 	
 	start_race()
 	update_watermelon_display()
+	update_death_display()
 
 func start_race():
 	switch_traffic_light_color("RED")
@@ -73,24 +84,45 @@ func _process(delta: float) -> void:
 	if is_timer_running:
 		elapsed_time += delta
 		update_timer_display()
+		calculate_current_score()
+
+func calculate_current_score():
+	var raw_score = MAX_SCORE * exp(-DECAY_RATE * elapsed_time)
+	current_score = max(0, int(raw_score))
+	#display_current_score()
+
+func display_current_score():
+	$HUD/Score.text = "Current score: " + str(current_score)
+
+func calculate_final_score():
+	var base_score = MAX_SCORE * exp(-DECAY_RATE * elapsed_time)
+	
+	var watermelon_multiplier = 1.0 + WATERMELON_BONUS * (watermelons / float(MAX_WATERMELONS))
+	var death_penalty_multiplier = 1.0 - (death_count * DEATH_PENALTY)
+	death_penalty_multiplier = max(0, death_penalty_multiplier)  # не уходим в минус
+	
+	final_score = int(base_score * watermelon_multiplier * death_penalty_multiplier)
+	final_score = max(0, final_score)  # защита от отрицательных значений
+	
+	return final_score
 
 func die():
+	death_count += 1
 	camera.screen_shake(5, 0.2)
 	position = checkpoint
+	update_death_display()
 
 func save(new_checkpoint):
 	checkpoint = new_checkpoint
 
 func has_ability(ability: String):
 	return abilities.get(ability, false)
-	print(abilities)
 
 func add_ability(ability: String):
 	if has_ability(ability):
 		return
 	
 	abilities.set(ability, true)
-	print(abilities)
 
 func add_watermelon(num: int = 1):
 	watermelons += num
@@ -110,6 +142,22 @@ func update_timer_display():
 
 func stop_race():
 	is_timer_running = false
+	var final_score_value = calculate_final_score()
+	display_final_score(final_score_value)
+	print("=== РЕЗУЛЬТАТЫ ЗАБЕГА ===")
+	print("Время: ", timer_label.text)
+	print("Базовые очки: ", int(MAX_SCORE * exp(-DECAY_RATE * elapsed_time)))
+	print("Собрано арбузов: ", watermelons, "/", MAX_WATERMELONS)
+	print("Бонус за арбузы: +", WATERMELON_BONUS * (watermelons / float(MAX_WATERMELONS)) * 100, "%")
+	print("Количество смертей: ", death_count)
+	print("Штраф за смерти: -", death_count * DEATH_PENALTY * 100, "%")
+	print("Итоговые очки: ", final_score_value)
+
+func display_final_score(value):
+	$HUD/Score.text = "Final Score: " + str(value)
 
 func update_watermelon_display():
 	$HUD/WatermelonCounter/Label.text = "x" + str(watermelons)
+
+func update_death_display():
+	$HUD/DeathCounter/Label.text = "x" + str(death_count)
