@@ -45,16 +45,16 @@ func _ready() -> void:
 
 func start_race():
 	switch_traffic_light_color("RED")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	switch_traffic_light_color("YELLOW")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	switch_traffic_light_color("GREEN")
 	
 	start_timer()
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	turn_off_all_traffic_lights()
 
 func switch_traffic_light_color(color: String):
@@ -106,3 +106,6 @@ func update_timer_display():
 	var seconds = int(elapsed_time) % 60
 	var milliseconds = int((elapsed_time - int(elapsed_time)) * 100)
 	timer_label.text = "%d:%02d:%02d" % [minutes, seconds, milliseconds]
+
+func stop_race():
+	is_timer_running = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cymaui3d5yqgb"]
+[gd_scene load_steps=26 format=4 uid="uid://cymaui3d5yqgb"]
 
 [ext_resource type="TileSet" uid="uid://dx0gymyt84wcp" path="res://resources/tilemap.tres" id="1_ty3hu"]
 [ext_resource type="PackedScene" uid="uid://dwtqehgwtnbtw" path="res://scenes/uter.tscn" id="2_mckh2"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://qf3i5m735tto" path="res://scenes/ability_pickup.tscn" id="8_j0sdw"]
 [ext_resource type="TileSet" uid="uid://dtk8ywif7abgu" path="res://resources/base_tilemap.tres" id="9_5dxk1"]
 [ext_resource type="PackedScene" uid="uid://dbl5de8gek3w7" path="res://scenes/fade_area.tscn" id="9_jy02f"]
+[ext_resource type="PackedScene" uid="uid://bm51f337nv7hb" path="res://scenes/finish.tscn" id="11_kjd3d"]
 
 [sub_resource type="Curve2D" id="Curve2D_gg43x"]
 _data = {
@@ -293,6 +294,9 @@ position = Vector2(-76, -358)
 [node name="CollisionShape2D" parent="TileMapLayer12/FadeArea" index="0"]
 position = Vector2(2, 14)
 shape = SubResource("RectangleShape2D_pdl2l")
+
+[node name="Finish" parent="." instance=ExtResource("11_kjd3d")]
+position = Vector2(1310, -280)
 
 [editable path="HazardArea"]
 [editable path="HazardArea2"]
