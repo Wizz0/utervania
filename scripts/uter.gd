@@ -149,6 +149,9 @@ func calculate_final_score():
 func die():
 	death_count += 1
 	camera.screen_shake(5, 0.2)
+	anim.self_modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	anim.self_modulate = Color.WHITE
 	position = checkpoint
 	update_death_display()
 
