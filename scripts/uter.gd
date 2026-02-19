@@ -161,6 +161,16 @@ func stop_race():
 	print("Количество смертей: ", death_count)
 	print("Штраф за смерти: -", death_count * DEATH_PENALTY * 100, "%")
 	print("Итоговые очки: ", final_score_value)
+	
+	
+	
+	var finish_menu = load("res://scenes/finish_menu.tscn").instantiate()
+	finish_menu.setup(final_score_value, timer_label.text, watermelons, death_count)
+	get_tree().get_root().add_child(finish_menu)
+	
+	info_label.text = ""
+	timer_label.text = ""
+	can_move = false
 
 func display_final_score(value):
 	info_label.text = "Final Score: " + str(value)
