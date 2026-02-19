@@ -5,6 +5,7 @@ extends AnimatedSprite2D
 var time: float = 0.0
 
 func _process(delta: float) -> void:
+	# свечение
 	time += delta
 	
 	var scale_value = 8.0 + sin(time * 2.5) * 3.0
