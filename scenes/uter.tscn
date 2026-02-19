@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dwtqehgwtnbtw"]
+[gd_scene load_steps=45 format=3 uid="uid://dwtqehgwtnbtw"]
 
 [ext_resource type="Texture2D" uid="uid://cwi1yc258ibfw" path="res://assets/uter/uter-idle.png" id="1_el6a7"]
 [ext_resource type="Script" uid="uid://s7dcjme2apns" path="res://scripts/uter.gd" id="1_vi2m4"]
@@ -206,11 +206,14 @@ height = 24.0
 [sub_resource type="LabelSettings" id="LabelSettings_f1fcv"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_6d54a"]
+font_size = 20
+
 [sub_resource type="LabelSettings" id="LabelSettings_if7ij"]
 font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_jctpp"]
-font_size = 25
+font_size = 20
 
 [node name="Uter" type="CharacterBody2D" groups=["uter"]]
 script = ExtResource("1_vi2m4")
@@ -326,6 +329,23 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("14_lisen")
 expand_mode = 3
+
+[node name="Label" type="Label" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -4.0
+offset_right = 50.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Get ready"
+label_settings = SubResource("LabelSettings_6d54a")
+horizontal_alignment = 1
 
 [node name="ItemCounter" type="Control" parent="HUD"]
 layout_mode = 3

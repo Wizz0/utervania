@@ -64,17 +64,21 @@ func _ready() -> void:
 
 func start_race():
 	switch_traffic_light_color("RED")
+	$HUD/Control/Label.text = "Wait"
 	await get_tree().create_timer(1.0).timeout
 	
 	switch_traffic_light_color("YELLOW")
+	$HUD/Control/Label.text = "Get ready"
 	await get_tree().create_timer(1.0).timeout
 	
 	switch_traffic_light_color("GREEN")
+	$HUD/Control/Label.text = "GO!"
 	
 	start_timer()
 	
 	await get_tree().create_timer(1.0).timeout
 	turn_off_all_traffic_lights()
+	$HUD/Control/Label.text = ""
 
 func switch_traffic_light_color(color: String):
 	turn_off_all_traffic_lights()
@@ -182,10 +186,10 @@ func update_death_display():
 	$HUD/DeathCounter/Label.text = "x" + str(death_count)
 
 func display_ability_info(ability: String):
-	var ability_name = ability.capitalize()
+	#var ability_name = ability.capitalize()
 	var ability_description = ability_descriptions.get(ability)
 	
-	info_label.text = ability_name + "\n" + ability_description
+	info_label.text = "Получен " + ability + "\n" + ability_description
 	
 	await get_tree().create_timer(3.0).timeout
 	info_label.text = ""
