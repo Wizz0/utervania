@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="utervania"
+run/main_scene="uid://d28aawkd7s16r"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor]
+
+movie_writer/video_quality=0.5
+movie_writer/ogv/audio_quality=-0.1
+movie_writer/ogv/encoding_speed=1
+movie_writer/movie_file="D:/Projects/UterVania/gameplay.avi"
+movie_writer/fps=90
 
 [global_group]
 

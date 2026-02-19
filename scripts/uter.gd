@@ -29,12 +29,15 @@ var checkpoint: Vector2
 @export var unlock_all_abilities: bool = false
 
 var abilities: Dictionary = {}
+var ability_descriptions: Dictionary = {}
 var watermelons: int = 0
 
 var elapsed_time: float = 0.0
 var is_timer_running: bool = false
 
 var traffic_lights_colors: Dictionary = {}
+
+@onready var info_label: Label = $HUD/InfoLabel
 
 func _ready() -> void:
 	checkpoint = position
@@ -44,6 +47,11 @@ func _ready() -> void:
 			"double_jump": true,
 			"dash": true
 		}
+	
+	ability_descriptions = {
+		"dash" : "Нажмите Shift для совершения рывка (работает даже в воздухе)",
+		"double_jump" : "Теперь вы может прыгать целых в два раза больше!"
+	}
 	
 	traffic_lights_colors = {
 		"RED" : $HUD/Control/Red,
@@ -92,7 +100,7 @@ func calculate_current_score():
 	#display_current_score()
 
 func display_current_score():
-	$HUD/Score.text = "Current score: " + str(current_score)
+	info_label.text = "Current score: " + str(current_score)
 
 func calculate_final_score():
 	var base_score = MAX_SCORE * exp(-DECAY_RATE * elapsed_time)
@@ -123,6 +131,7 @@ func add_ability(ability: String):
 		return
 	
 	abilities.set(ability, true)
+	display_ability_info(ability)
 
 func add_watermelon(num: int = 1):
 	watermelons += num
@@ -152,12 +161,31 @@ func stop_race():
 	print("Количество смертей: ", death_count)
 	print("Штраф за смерти: -", death_count * DEATH_PENALTY * 100, "%")
 	print("Итоговые очки: ", final_score_value)
+	
+	
+	
+	var finish_menu = load("res://scenes/finish_menu.tscn").instantiate()
+	finish_menu.setup(final_score_value, timer_label.text, watermelons, death_count)
+	get_tree().get_root().add_child(finish_menu)
+	
+	info_label.text = ""
+	timer_label.text = ""
+	can_move = false
 
 func display_final_score(value):
-	$HUD/Score.text = "Final Score: " + str(value)
+	info_label.text = "Final Score: " + str(value)
 
 func update_watermelon_display():
 	$HUD/WatermelonCounter/Label.text = "x" + str(watermelons)
 
 func update_death_display():
 	$HUD/DeathCounter/Label.text = "x" + str(death_count)
+
+func display_ability_info(ability: String):
+	var ability_name = ability.capitalize()
+	var ability_description = ability_descriptions.get(ability)
+	
+	info_label.text = ability_name + "\n" + ability_description
+	
+	await get_tree().create_timer(3.0).timeout
+	info_label.text = ""

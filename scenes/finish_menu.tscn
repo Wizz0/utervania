@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4b251o3bfpxx"]
+
+[ext_resource type="Script" uid="uid://084v8tapvf4d" path="res://scripts/finish_menu.gd" id="1_2jyh4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_an7r4"]
+font_size = 20
+
+[node name="FinishMenu" type="CanvasLayer"]
+script = ExtResource("1_2jyh4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.625
+offset_top = -258.0
+offset_right = 312.625
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.625
+offset_top = -258.0
+offset_right = 312.625
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.027
+anchor_right = 0.5
+anchor_bottom = 0.027
+offset_left = -92.5
+offset_top = -2.9320002
+offset_right = 92.5
+offset_bottom = 29.068
+grow_horizontal = 2
+text = "Уровень пройден!"
+label_settings = SubResource("LabelSettings_an7r4")
+horizontal_alignment = 1
+
+[node name="RaceResults" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -184.0
+offset_right = 167.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TryAgain" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.5
+offset_top = 75.0
+offset_right = 147.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Вы можете пройти уровень еще раз
+(очки не будут зачтены)"
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -107.0
+offset_right = 53.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PlayAgain"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
