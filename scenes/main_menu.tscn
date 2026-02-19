@@ -1,0 +1,107 @@
+[gd_scene load_steps=3 format=3 uid="uid://d28aawkd7s16r"]
+
+[ext_resource type="Script" uid="uid://cyryt2imc4gnc" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vue75"]
+font_size = 30
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_l6cm7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.386
+anchor_top = 0.5
+anchor_right = 0.386
+anchor_bottom = 0.5
+offset_left = -86.672
+offset_top = -15.5
+offset_right = 87.328
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="AuthButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87500006
+anchor_top = 0.897
+anchor_right = 0.87500006
+anchor_bottom = 0.897
+offset_left = -87.00006
+offset_top = -15.255981
+offset_right = 86.99994
+offset_bottom = 15.744019
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sign In"
+
+[node name="GameTitle" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -147.0
+offset_right = 72.5
+offset_bottom = -105.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UterVania"
+label_settings = SubResource("LabelSettings_vue75")
+
+[node name="GameDescription" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -106.0
+offset_right = 153.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Metroidvania game in the daily formula"
+
+[node name="LeaderBoard" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 290.0
+offset_right = 833.0
+offset_bottom = 537.0
+
+[node name="CheckButton" type="CheckButton" parent="Control/LeaderBoard"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.132
+anchor_right = 0.5
+anchor_bottom = 0.132
+offset_left = -126.5
+offset_top = -15.604
+offset_right = 126.5
+offset_bottom = 15.396
+grow_horizontal = 2
+text = "General/Daily leaderboard"
+
+[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
