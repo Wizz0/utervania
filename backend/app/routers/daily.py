@@ -11,7 +11,7 @@ async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
     """Получить уровень на сегодня"""
     today = date.today()
     
-    # Пробуем найти уровень в расписании
+    # 1. Пробуем найти уровень в расписании
     row = await conn.fetchrow("""
         SELECT l.* 
         FROM daily_schedule d
@@ -19,7 +19,7 @@ async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
         WHERE d.date = $1
     """, today)
     
-    # Если нет в расписании — берем случайный
+    # 2. Если нет в расписании — берем случайный
     if not row:
         row = await conn.fetchrow("""
             SELECT * FROM levels 
@@ -45,6 +45,5 @@ async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
     return {
         "id": level['id'],
         "name": level['name'],
-        "filename": level['filename'],
-        "difficulty": level['difficulty']
+        "filename": level['filename']
     }
