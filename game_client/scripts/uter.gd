@@ -10,7 +10,7 @@ const DEATH_PENALTY = 0.1
 var current_score = 0
 var final_score = 0
 var death_count: int = 0
-var item_count: int = 0
+var items_count: int = 0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -104,14 +104,14 @@ func stop_race():
 	print("=== РЕЗУЛЬТАТЫ ЗАБЕГА ===")
 	print("Время: ", timer_label.text)
 	print("Базовые очки: ", int(MAX_SCORE * exp(-DECAY_RATE * elapsed_time)))
-	print("Собрано арбузов: ", item_count, "/", MAX_ITEMS)
-	print("Бонус за арбузы: +", ITEM_BONUS * (item_count / float(MAX_ITEMS)) * 100, "%")
+	print("Собрано арбузов: ", items_count, "/", MAX_ITEMS)
+	print("Бонус за арбузы: +", ITEM_BONUS * (items_count / float(MAX_ITEMS)) * 100, "%")
 	print("Количество смертей: ", death_count)
 	print("Штраф за смерти: -", death_count * DEATH_PENALTY * 100, "%")
 	print("Итоговые очки: ", final_score_value)
 	
 	var finish_menu = load("res://scenes/finish_menu.tscn").instantiate()
-	finish_menu.setup(final_score_value, timer_label.text, item_count, death_count)
+	finish_menu.setup(final_score_value, timer_label.text, items_count, death_count)
 	get_tree().get_root().add_child(finish_menu)
 	
 	info_label.text = ""
@@ -141,7 +141,7 @@ func display_current_score():
 func calculate_final_score():
 	var base_score = MAX_SCORE * exp(-DECAY_RATE * elapsed_time)
 	
-	var item_multiplier = 1.0 + ITEM_BONUS * (item_count / float(MAX_ITEMS))
+	var item_multiplier = 1.0 + ITEM_BONUS * (items_count / float(MAX_ITEMS))
 	var death_penalty_multiplier = 1.0 - (death_count * DEATH_PENALTY)
 	death_penalty_multiplier = max(0, death_penalty_multiplier)  # не уходим в минус
 	
@@ -173,14 +173,14 @@ func add_ability(ability: String):
 	display_ability_info(ability)
 
 func add_item(num):
-	item_count += num
+	items_count += num
 	update_item_display()
 
 func display_final_score(value):
 	info_label.text = "Final Score: " + str(value)
 
 func update_item_display():
-	$HUD/ItemCounter/Label.text = "x" + str(item_count)
+	$HUD/ItemCounter/Label.text = "x" + str(items_count)
 
 func update_death_display():
 	$HUD/DeathCounter/Label.text = "x" + str(death_count)
