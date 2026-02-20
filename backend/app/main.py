@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import daily
+from .routers import daily, runs
 
 app = FastAPI(
     title="UterVania API",
@@ -9,6 +9,7 @@ app = FastAPI(
 
 # Подключаем роутеры
 app.include_router(daily.router)
+app.include_router(runs.router)
 
 @app.get("/")
 async def root():
