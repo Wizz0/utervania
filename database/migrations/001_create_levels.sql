@@ -1,0 +1,7 @@
+CREATE TABLE levels (
+	id SERIAL PRIMARY KEY,
+	filename VARCHAR(255) NOT NULL,
+	name VARCHAR(255),
+	description TEXT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

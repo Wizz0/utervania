@@ -1,0 +1,10 @@
+CREATE TABLE runs (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER REFERENCES users(id),
+	level_id INTEGER REFERENCES levels(id),
+	score INTEGER,
+	time FLOAT,
+	items_count INTEGER,
+	death_count INTEGER DEFAULT 0,
+	date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
