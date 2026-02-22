@@ -1,17 +1,22 @@
 from fastapi import APIRouter, HTTPException, Depends
+from fastapi.responses import FileResponse
 from datetime import date
 import asyncpg
+import os
 from ..database import get_db
-from ..models import Level
 
 router = APIRouter(prefix="/daily", tags=["daily"])
 
+# Путь к папке с файлами уровней
+LEVELS_DIR = os.path.join(os.path.dirname(__file__), "../../../level_files")
+
 @router.get("/")
 async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
-    """Получить уровень на сегодня"""
+    """Получить файл уровня на сегодня"""
+    
     today = date.today()
     
-    # 1. Пробуем найти уровень в расписании
+    # 1. Ищем уровень в расписании
     row = await conn.fetchrow("""
         SELECT l.* 
         FROM daily_schedule d
@@ -27,7 +32,6 @@ async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
             LIMIT 1
         """)
         
-        # Сохраняем в расписание (чтобы завтра не было снова случайным)
         if row:
             await conn.execute("""
                 INSERT INTO daily_schedule (date, level_id)
@@ -38,12 +42,25 @@ async def get_daily_level(conn: asyncpg.Connection = Depends(get_db)):
     if not row:
         raise HTTPException(status_code=404, detail="No levels found")
     
-    # Преобразуем в словарь
     level = dict(row)
     
-    # Пока просто возвращаем JSON (потом добавим файл)
-    return {
-        "id": level['id'],
-        "name": level['name'],
-        "filename": level['filename']
-    }
+    # 3. Формируем путь к файлу
+    file_path = os.path.join(LEVELS_DIR, level['filename'])
+    
+    # 4. Проверяем, существует ли файл
+    if not os.path.exists(file_path):
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Level file {level['filename']} not found on server"
+        )
+    
+    # 5. Отдаем файл
+    return FileResponse(
+        path=file_path,
+        filename=level['filename'],
+        media_type="application/octet-stream",
+        # headers={
+        #     "X-Level-Name": level['name'] or "",
+        #     "X-Level-ID": str(level['id'])
+        # }
+    )
