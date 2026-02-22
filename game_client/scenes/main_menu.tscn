@@ -104,4 +104,6 @@ offset_bottom = 15.396
 grow_horizontal = 2
 text = "General/Daily leaderboard"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
