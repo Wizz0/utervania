@@ -11,3 +11,7 @@ database/data
 
 .env
 *.env
+
+# Файлы уровней (не коммитим бинарные файлы)
+/level_files/
+!level_files/.gitkeep
